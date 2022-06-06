@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="cita">
+      <h2 data-cy="citaDetailsHeading"><span jhiTranslate="labDentalistApp.cita.detail.title">Cita</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ cita.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.cita.fechaEmison">Fecha Emison</span></dt>
+        <dd>
+          <span>{{ cita.fechaEmison | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.cita.fechaCita">Fecha Cita</span></dt>
+        <dd>
+          <span>{{ cita.fechaCita | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.cita.descripcion">Descripcion</span></dt>
+        <dd>
+          <span>{{ cita.descripcion }}</span>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.cita.cliente">Cliente</span></dt>
+        <dd>
+          <div *ngIf="cita.cliente">
+            <a [routerLink]="['/cliente', cita.cliente?.id, 'view']">{{ cita.cliente?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/cita', cita.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

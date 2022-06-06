@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="receta">
+      <h2 data-cy="recetaDetailsHeading"><span jhiTranslate="labDentalistApp.receta.detail.title">Receta</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ receta.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.receta.numeroReceta">Numero Receta</span></dt>
+        <dd>
+          <span>{{ receta.numeroReceta }}</span>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.receta.fechaEmision">Fecha Emision</span></dt>
+        <dd>
+          <span>{{ receta.fechaEmision | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.receta.fechaVencimiento">Fecha Vencimiento</span></dt>
+        <dd>
+          <span>{{ receta.fechaVencimiento | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.receta.descripcion">Descripcion</span></dt>
+        <dd>
+          <span>{{ receta.descripcion }}</span>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.receta.cliente">Cliente</span></dt>
+        <dd>
+          <div *ngIf="receta.cliente">
+            <a [routerLink]="['/cliente', receta.cliente?.id, 'view']">{{ receta.cliente?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/receta', receta.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
